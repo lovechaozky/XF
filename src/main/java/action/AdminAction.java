@@ -33,14 +33,15 @@ public class AdminAction extends ActionSupport implements ServletResponseAware, 
     public AdminAction(){
         super();
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
-        adminService = (AdminService) applicationContext.getBean("adminService");
+        adminService = (AdminService) applicationContext.getBean("AdminService");
     }
 
     @Action(value = "adminLogin")
     public void adminLogin()throws Exception{
         String account = request.getParameter("account");
-        String passowrd = request.getParameter("password");
-        Admin admin = adminService.getAdminByAccountAndPassword(account, passowrd);
+        String password = request.getParameter("password");
+        Admin admin = adminService.getAdminByAccountAndPassword(account, password);
+//        System.out.println(admin.toString());
         JSONObject jsonObject = new JSONObject();
         if(admin == null){
             jsonObject.put("adminLoginState", "fail");
