@@ -24,6 +24,7 @@
         <property name="annotatedClasses">
             <list>
                 <value>domain.Test</value>
+                <value>domain.Admin</value>
             </list>
         </property>
         <property name="hibernateProperties">
