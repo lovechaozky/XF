@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:cache="http://www.springframework.org/schema/task"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+                           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+                           http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+    <!--jdbc prop-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close"
+          p:driverClass="com.mysql.jdbc.Driver"
+          p:jdbcUrl="jdbc:mysql://localhost:3306/xf?useUnicode=true&amp;characterEncoding=utf-8"
+          p:user="root"
+          p:password="root">
+    </bean>
+
+    <!--the configuration of sessionFactory-->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
+          p:dataSource-ref="dataSource">
+        <property name="annotatedClasses">
+            <list>
+                <value>domain.Test</value>
+                <value>domain.Admin</value>
+                <value>domain.Introduction</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="show_sql">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!--the configuration of transaction manager-->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"></ref>
+        </property>
+    </bean>
+
+    <!--auto scan all component in these packages-->
+    <context:annotation-config/>
+    <!--make annotation useful-->
+    <context:component-scan base-package="service"/>
+    <!--scan all component in service package-->
+    <context:component-scan base-package="DAO"/>
+    <!--scan all component in dao package-->
+    <context:component-scan base-package="domain"/>
+    <!--scan all component in domain package-->
+    <context:spring-configured/>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <cache:annotation-driven/>
+</beans>

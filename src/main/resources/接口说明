@@ -1,0 +1,12 @@
+1、
+管理员登录：adminLogin
+失败：jsonObject.put("adminLoginState", "fail");
+成功：jsonObject.put("adminLoginState", "success");session.put("admin", admin);
+
+2、
+中心简介编辑：updateIntroduction
+成功：jsonObject.put("updateIntroductionState", "success");
+
+3、
+中心简介查看：getIntroduction
+成功：jsonObject.put("introduction", introduction);
