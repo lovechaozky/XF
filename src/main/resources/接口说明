@@ -1,12 +1,15 @@
 1、
 管理员登录：adminLogin
+需求：用户名account，密码password
 失败：jsonObject.put("adminLoginState", "fail");
 成功：jsonObject.put("adminLoginState", "success");session.put("admin", admin);
 
 2、
 中心简介编辑：updateIntroduction
+需求：中心简介introduction，章程constitution，规章制度rule
 成功：jsonObject.put("updateIntroductionState", "success");
 
 3、
 中心简介查看：getIntroduction
+需求：中心简介introduction，章程constitution，规章制度rule
 成功：jsonObject.put("introduction", introduction);
