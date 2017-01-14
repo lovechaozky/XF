@@ -13,3 +13,43 @@
 中心简介查看：getIntroduction
 需求：中心简介introduction，章程constitution，规章制度rule
 成功：jsonObject.put("introduction", introduction);
+
+4、
+用户名是否存在：isUsernameExist
+需求：用户名username
+存在：jsonObject.put("isExist", "yes");
+不存在：jsonObject.put("isExist", "no");
+
+5、
+用户注册：register
+需求：用户名username，密码password，班级classes，学号：number，手机号：phone，QQ：qq
+成功：jsonObject.put("register", "success");
+
+6、
+用户登录：login
+需求：用户名username，密码password
+失败：jsonObject.put("loginState", "fail");
+成功：jsonObject.put("loginState", "success");session.put("person", person);
+
+7、
+更新用户信息：updatePersonInfo
+需求：班级classes，学号：number，手机号：phone，QQ：qq
+成功：jsonObject.put("updatePersonInfo", "success");session.put("person", newPerson);
+
+8、
+修改用户密码：updatePersonPassword
+需求：旧密码：oldPassword，新密码：password
+失败：jsonObject.put("updatePersonPassword", "fail");
+成功：jsonObject.put("updatePersonPassword", "success");session.put("person", newPerson);
+
+9、
+根据用户名获取用户信息：getPersonByUsername
+需求：用户名username
+失败：jsonObject.put("briefPersonInfo", "fail");
+成功：jsonObject.put("briefPersonInfo", "success");session.put("briefPersonInfo", person);（无密码）
+
+10、
+根据用户id获取用户信息：getPersonById
+需求：用户id：id
+失败：jsonObject.put("briefPersonInfo", "fail");
+成功：jsonObject.put("briefPersonInfo", "success");session.put("briefPersonInfo", person);（无密码）

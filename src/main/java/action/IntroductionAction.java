@@ -58,6 +58,8 @@ public class IntroductionAction extends ActionSupport implements ServletResponse
 //        System.out.println(introduction1.toString());
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("updateIntroductionState", "success");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
         printWriter.write(jsonObject.toString());
         printWriter.close();
@@ -69,6 +71,8 @@ public class IntroductionAction extends ActionSupport implements ServletResponse
 //        System.out.println(introduction.toString());
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("introduction", introduction);
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
         printWriter.write(jsonObject.toString());
         printWriter.close();
