@@ -53,3 +53,18 @@
 需求：用户id：id
 失败：jsonObject.put("briefPersonInfo", "fail");
 成功：jsonObject.put("briefPersonInfo", "success");session.put("briefPersonInfo", person);（无密码）
+
+11、
+学习资料上传（管理员）：addMaterial
+需求：文件名称title，文件file
+成功：jsonObject.put("addMaterial", "success");
+失败：jsonObject.put("addMaterial", "fail");
+
+12、
+删除学习资料（管理员）：deleteMaterial
+需求：文件id：id
+成功：jsonObject.put("deleteMaterial", "success");
+
+13、
+查询所有学习资料：getAllMaterial
+成功：jsonObject.put("materials", materials);
