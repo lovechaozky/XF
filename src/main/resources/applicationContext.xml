@@ -15,7 +15,7 @@
           p:driverClass="com.mysql.jdbc.Driver"
           p:jdbcUrl="jdbc:mysql://localhost:3306/xf?useUnicode=true&amp;characterEncoding=utf-8"
           p:user="root"
-          p:password="root">
+          p:password="love19950812">
     </bean>
 
     <!--the configuration of sessionFactory-->

@@ -26,7 +26,6 @@
                 <value>domain.Test</value>
                 <value>domain.Admin</value>
                 <value>domain.Introduction</value>
-                <value>domain.Activity</value>
             </list>
         </property>
         <property name="hibernateProperties">
