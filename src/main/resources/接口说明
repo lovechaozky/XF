@@ -68,3 +68,23 @@
 13、
 查询所有学习资料：getAllMaterial
 成功：jsonObject.put("materials", materials);
+
+14、
+进行申请：addApplication
+需求：申请人person，类型type（包括辅导室使用申请，个人自习申请，个人一对一辅导申请，课程辅导申请），细节描述detail，时间time
+成功：jsonObject.put("application", "success");
+
+15、
+管理员批阅申请：updateApplication
+需求：细节回复detail，申请的id：id
+成功：jsonObject.put("updateApplication", "success");
+
+16、
+申请者查看自己的申请情况：getApplicationByPerson
+需求：申请人person
+成功：jsonObject.put("applications", applications);
+
+17、
+管理员查看未批阅的申请：getApplicationByState
+需求：无
+成功：jsonObject.put("applications", applications);

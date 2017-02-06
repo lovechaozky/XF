@@ -29,6 +29,7 @@
                 <value>domain.Person</value>
                 <value>domain.Material</value>
                 <value>domain.Activity</value>
+                <value>domain.Application</value>
             </list>
         </property>
         <property name="hibernateProperties">
