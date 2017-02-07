@@ -24,8 +24,9 @@ public class ApplicationServiceImpl implements ApplicationService{
     public void updateApplication(Application application) {
         Application oldApplication = applicationDAO.getById(application.getId());
         oldApplication.setState(application.getState());
-        oldApplication.setDetail(application.getDetail());
-        applicationDAO.update(application);
+        if(application.getDetail() != null && !"".equals(application.getDetail()))
+            oldApplication.setDetail(application.getDetail());
+        applicationDAO.update(oldApplication);
     }
 
     public List<Application> getApplicationByState(String state) {

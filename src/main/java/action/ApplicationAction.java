@@ -43,6 +43,8 @@ public class ApplicationAction extends ActionSupport implements ServletRequestAw
         String type = request.getParameter("type");
         String detail = request.getParameter("detail");
         String time = request.getParameter("time");
+        if(detail == null)
+            detail = "";
         String state = "申请中";
         Application application = new Application();
         application.setState(state);

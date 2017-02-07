@@ -88,3 +88,18 @@
 管理员查看未批阅的申请：getApplicationByState
 需求：无
 成功：jsonObject.put("applications", applications);
+
+18、
+管理员添加课程通知：addCourse
+需求：课程名course，时间time，地点place
+成功：jsonObject.put("addCourse", "success");
+
+19、
+管理员修改课程通知：updateCourse
+需求：课程名course，时间time，地点place，课程通知id：id
+成功：jsonObject.put("updateCourse", "success");
+
+20、
+查看课程通知：getCourseByTime
+需求：时间time
+成功：jsonObject.put("courses", courses);
