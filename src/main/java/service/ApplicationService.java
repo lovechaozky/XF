@@ -1,5 +1,6 @@
 package service;
 
+import DAO.querypage.Page;
 import domain.Application;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,12 +14,14 @@ import java.util.List;
 @Transactional
 public interface ApplicationService {
 
+    public int getPageCount(int everyPage);
+
     public void addApplication(Application application);
 
     public void updateApplication(Application application);
 
-    public List<Application> getApplicationByState(String state);
+    public List<Application> getApplicationByState(String state, Page page);
 
-    public List<Application> getApplicationByPerson(String person);
+    public List<Application> getApplicationByPerson(String person, Page page);
 
 }

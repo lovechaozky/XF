@@ -67,7 +67,8 @@
 
 13、
 查询所有学习资料：getAllMaterial
-成功：jsonObject.put("materials", materials);
+需求：页号requestPage
+成功：jsonObject.put("pageCount",totalPage);jsonObject.put("materials", materials);
 
 14、
 进行申请：addApplication
@@ -81,13 +82,13 @@
 
 16、
 申请者查看自己的申请情况：getApplicationByPerson
-需求：申请人person
-成功：jsonObject.put("applications", applications);
+需求：申请人person,页号requestPage
+成功：jsonObject.put("pageCount",totalPage);jsonObject.put("applications", applications);
 
 17、
 管理员查看未批阅的申请：getApplicationByState
-需求：无
-成功：jsonObject.put("applications", applications);
+需求：页号requestPage
+成功：jsonObject.put("pageCount",totalPage);jsonObject.put("applications", applications);
 
 18、
 管理员添加课程通知：addCourse
@@ -101,8 +102,8 @@
 
 20、
 查看课程通知：getCourseByTime
-需求：时间time
-成功：jsonObject.put("courses", courses);
+需求：时间time，页号requestPage
+成功：jsonObject.put("pageCount",totalPage);jsonObject.put("courses", courses);
 
 21、
 管理员添加辅导室自习时间：addCounselingRoom
@@ -116,18 +117,18 @@
 
 23、
 根据时间查询辅导室：getCounselingRoomByTime
-需求：时间time
-成功：jsonObject.put("counselingRooms", counselingRooms);
+需求：时间time，页号requestPage
+成功：jsonObject.put("pageCount",totalPage);jsonObject.put("counselingRooms", counselingRooms);
 
 24、
 根据地点查询辅导室：getCounselingRoomByPlace
-需求：地点place
-成功：jsonObject.put("counselingRooms", counselingRooms);
+需求：地点place,页号requestPage
+成功：jsonObject.put("pageCount",totalPage);jsonObject.put("counselingRooms", counselingRooms);
 
 25、
 根据页号获取活动列表：listActivities
 需求：页号 requestPage
-成功：     jsonObject.put("pageCount",totalPage); jsonObject.put("activities", list);
+成功：jsonObject.put("pageCount",totalPage); jsonObject.put("activities", list);
 
 26、
 根据活动的ID获取活动：getActivity
@@ -137,7 +138,7 @@
 27、
 管理员添加活动：addActivity
 需求：活动标题 title   活动时间 date   内容文件路径 address
-成功： jsonObject.put("addActivity", "success");
+成功：jsonObject.put("addActivity", "success");
 
 28、
 管理员修改活动信息：updateActivity
@@ -147,4 +148,34 @@
 29、
 管理员删除活动信息：deleteActivity
 需求：活动Id id
-成功： jsonObject.put("deleteActivity", "success");
+成功：jsonObject.put("deleteActivity", "success");
+
+30、
+添加评论：addCommunication
+需求：时间time，发表人person，内容message
+成功：jsonObject.put("addCommunication", "success");
+
+31、
+修改评论：updateCommunication
+需求：内容message，对应id：id
+成功：jsonObject.put("updateCommunication", "success");
+
+32、
+删除评论：deleteCommunication
+需求：对应id：id
+成功：jsonObject.put("deleteCommunication", "success");
+
+33、
+按时间查看评论：getCommunicationByTime
+需求：时间time,页号requestPage
+成功：jsonObject.put("pageCount",totalPage);jsonObject.put("communications", communications);
+
+34、
+按人物查看评论：getCommunicationByPerson
+需求：人物person,页号requestPage
+成功：jsonObject.put("pageCount",totalPage);jsonObject.put("communications", communications);
+
+35、
+查看所有评论：getAllCommunication
+需求：页号requestPage
+成功：jsonObject.put("pageCount",totalPage);jsonObject.put("communications", communications);

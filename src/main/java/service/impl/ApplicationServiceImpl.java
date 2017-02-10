@@ -1,6 +1,7 @@
 package service.impl;
 
 import DAO.ApplicationDAO;
+import DAO.querypage.Page;
 import domain.Application;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,11 +30,15 @@ public class ApplicationServiceImpl implements ApplicationService{
         applicationDAO.update(oldApplication);
     }
 
-    public List<Application> getApplicationByState(String state) {
-        return applicationDAO.getByState(state);
+    public int getPageCount(int everyPage) {
+        return applicationDAO.getPageCount(everyPage);
     }
 
-    public List<Application> getApplicationByPerson(String person) {
-        return applicationDAO.getByPerson(person);
+    public List<Application> getApplicationByState(String state, Page page) {
+        return applicationDAO.getByState(state, page);
+    }
+
+    public List<Application> getApplicationByPerson(String person, Page page) {
+        return applicationDAO.getByPerson(person, page);
     }
 }

@@ -1,5 +1,7 @@
 package action;
 
+import DAO.querypage.Page;
+import DAO.querypage.PageUtils;
 import com.opensymphony.xwork2.ActionSupport;
 import domain.Material;
 import org.apache.commons.io.FileUtils;
@@ -87,8 +89,13 @@ public class MaterialAction extends ActionSupport implements ServletResponseAwar
 
     @Action(value = "getAllMaterial")
     public void getAllMaterial()throws Exception{
-        List<Material> materials = materialService.getAllMaterial();
+        int requestPage = Integer.parseInt(request.getParameter("requestPage"));
+        int everyPage = 10;
+        int totalPage = materialService.getPageCount(everyPage);
+        Page page = PageUtils.createPage(everyPage, totalPage, requestPage);
+        List<Material> materials = materialService.getAllMaterial(page);
         JSONObject jsonObject = new JSONObject();
+        jsonObject.put("pageCount",totalPage);
         jsonObject.put("materials", materials);
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");

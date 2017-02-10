@@ -1,5 +1,7 @@
 package action;
 
+import DAO.querypage.Page;
+import DAO.querypage.PageUtils;
 import com.opensymphony.xwork2.ActionSupport;
 import domain.Application;
 import domain.Person;
@@ -33,6 +35,7 @@ public class ApplicationAction extends ActionSupport implements ServletRequestAw
     ApplicationService applicationService;
 
     public ApplicationAction(){
+        super();
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         applicationService = (ApplicationService) applicationContext.getBean("ApplicationService");
     }
@@ -84,8 +87,13 @@ public class ApplicationAction extends ActionSupport implements ServletRequestAw
     @Action(value = "getApplicationByPerson")
     public void getApplicationByPerson()throws Exception{
         String person = request.getParameter("person");
-        List<Application> applications = applicationService.getApplicationByPerson(person);
+        int requestPage = Integer.parseInt(request.getParameter("requestPage"));
+        int everyPage = 10;
+        int totalPage = applicationService.getPageCount(everyPage);
+        Page page = PageUtils.createPage(everyPage, totalPage, requestPage);
+        List<Application> applications = applicationService.getApplicationByPerson(person, page);
         JSONObject jsonObject = new JSONObject();
+        jsonObject.put("pageCount",totalPage);
         jsonObject.put("applications", applications);
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
@@ -96,8 +104,13 @@ public class ApplicationAction extends ActionSupport implements ServletRequestAw
 
     @Action(value = "getApplicationByState")
     public void getApplicationByState()throws Exception{
-        List<Application> applications = applicationService.getApplicationByState("申请中");
+        int requestPage = Integer.parseInt(request.getParameter("requestPage"));
+        int everyPage = 10;
+        int totalPage = applicationService.getPageCount(everyPage);
+        Page page = PageUtils.createPage(everyPage, totalPage, requestPage);
+        List<Application> applications = applicationService.getApplicationByState("申请中", page);
         JSONObject jsonObject = new JSONObject();
+        jsonObject.put("pageCount",totalPage);
         jsonObject.put("applications", applications);
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");

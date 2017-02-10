@@ -45,10 +45,10 @@ public class ActivityAction extends ActionSupport implements ServletResponseAwar
      */
     @Action("listActivities")
     public void listActivities(){
-        int requesetPage = Integer.valueOf(request.getParameter("requestPage"));
-        int ereryPage = 10;
-        int totalPage = activityService.getPageCount(ereryPage);
-        Page page = PageUtils.createPage(ereryPage,totalPage,requesetPage);
+        int requestPage = Integer.valueOf(request.getParameter("requestPage"));
+        int everyPage = 10;
+        int totalPage = activityService.getPageCount(everyPage);
+        Page page = PageUtils.createPage(everyPage,totalPage,requestPage);
         List<Activity> list = activityService.list(page);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("pageCount",totalPage);

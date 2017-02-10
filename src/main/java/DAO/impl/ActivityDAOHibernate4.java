@@ -19,6 +19,7 @@ public class ActivityDAOHibernate4 extends BaseDAOHibernate4<Activity> implement
         Query query = session.createQuery("select activity from Activity order by activity.date desc ");
         query.setMaxResults(page.getEveryPage());
         query.setFirstResult(page.getBeginIndex());
+        session.close();
         return query.list();
     }
 
@@ -27,6 +28,7 @@ public class ActivityDAOHibernate4 extends BaseDAOHibernate4<Activity> implement
         Query query = session.createQuery("select count(*) from Activity");
         long rowCount = (Long)query.uniqueResult();
         int rowCountInt =  Integer.valueOf(rowCount+"");
+        session.close();
         if(rowCountInt==0){
             return 0;
         }else{

@@ -1,5 +1,7 @@
 package action;
 
+import DAO.querypage.Page;
+import DAO.querypage.PageUtils;
 import com.opensymphony.xwork2.ActionSupport;
 import domain.CounselingRoom;
 import org.apache.struts2.convention.annotation.Action;
@@ -32,6 +34,7 @@ public class CounselingRoomAction extends ActionSupport implements ServletRespon
     CounselingRoomService counselingRoomService;
 
     public CounselingRoomAction(){
+        super();
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         counselingRoomService = (CounselingRoomService) applicationContext.getBean("CounselingRoomService");
     }
@@ -74,8 +77,13 @@ public class CounselingRoomAction extends ActionSupport implements ServletRespon
     @Action(value = "getCounselingRoomByTime")
     public void getCounselingRoomByTime()throws Exception{
         String time = request.getParameter("time");
-        List<CounselingRoom> counselingRooms = counselingRoomService.getCounselingRoomByTime(time);
+        int requestPage = Integer.parseInt(request.getParameter("requestPage"));
+        int everyPage = 10;
+        int totalPage = counselingRoomService.getPageCount(everyPage);
+        Page page = PageUtils.createPage(everyPage, totalPage, requestPage);
+        List<CounselingRoom> counselingRooms = counselingRoomService.getCounselingRoomByTime(time, page);
         JSONObject jsonObject = new JSONObject();
+        jsonObject.put("pageCount",totalPage);
         jsonObject.put("counselingRooms", counselingRooms);
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
@@ -87,8 +95,13 @@ public class CounselingRoomAction extends ActionSupport implements ServletRespon
     @Action(value = "getCounselingRoomByPlace")
     public void getCounselingRoomByPlace()throws Exception{
         String place = request.getParameter("place");
-        List<CounselingRoom> counselingRooms = counselingRoomService.getCounselingRoomByPlace(place);
+        int requestPage = Integer.parseInt(request.getParameter("requestPage"));
+        int everyPage = 10;
+        int totalPage = counselingRoomService.getPageCount(everyPage);
+        Page page = PageUtils.createPage(everyPage, totalPage, requestPage);
+        List<CounselingRoom> counselingRooms = counselingRoomService.getCounselingRoomByPlace(place, page);
         JSONObject jsonObject = new JSONObject();
+        jsonObject.put("pageCount",totalPage);
         jsonObject.put("counselingRooms", counselingRooms);
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");

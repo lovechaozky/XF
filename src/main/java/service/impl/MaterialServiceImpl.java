@@ -1,6 +1,7 @@
 package service.impl;
 
 import DAO.MaterialDAO;
+import DAO.querypage.Page;
 import domain.Material;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,10 @@ public class MaterialServiceImpl implements MaterialService{
     @Autowired
     MaterialDAO materialDAO;
 
+    public int getPageCount(int everyPage) {
+        return materialDAO.getPageCount(everyPage);
+    }
+
     public void addMaterial(Material material) {
         materialDAO.add(material);
     }
@@ -25,8 +30,8 @@ public class MaterialServiceImpl implements MaterialService{
         materialDAO.add(material);
     }
 
-    public List<Material> getAllMaterial() {
-        return materialDAO.getAll();
+    public List<Material> getAllMaterial(Page page) {
+        return materialDAO.getAll(page);
     }
 
     public Material getMaterialById(int id) {

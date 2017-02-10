@@ -1,5 +1,6 @@
 package service;
 
+import DAO.querypage.Page;
 import domain.Material;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,11 +14,13 @@ import java.util.List;
 @Transactional
 public interface MaterialService {
 
+    public int getPageCount(int everyPage);
+
     public void addMaterial(Material material);
 
     public void deleteMaterial(Material material);
 
-    public List<Material> getAllMaterial();
+    public List<Material> getAllMaterial(Page page);
 
     public Material getMaterialById(int id);
 

@@ -1,5 +1,7 @@
 package action;
 
+import DAO.querypage.Page;
+import DAO.querypage.PageUtils;
 import com.opensymphony.xwork2.ActionSupport;
 import domain.Course;
 import org.apache.struts2.convention.annotation.Action;
@@ -32,6 +34,7 @@ public class CourseAction extends ActionSupport implements ServletRequestAware,S
     CourseService courseService;
 
     public CourseAction(){
+        super();
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         courseService = (CourseService) applicationContext.getBean("CourseService");
     }
@@ -79,8 +82,13 @@ public class CourseAction extends ActionSupport implements ServletRequestAware,S
     @Action(value = "getCourseByTime")
     public void getCourseByTime()throws Exception{
         String time = request.getParameter("time");
-        List<Course> courses = courseService.getCourseByTime(time);
+        int requestPage = Integer.parseInt(request.getParameter("requestPage"));
+        int everyPage = 10;
+        int totalPage = courseService.getPageCount(everyPage);
+        Page page = PageUtils.createPage(everyPage, totalPage, requestPage);
+        List<Course> courses = courseService.getCourseByTime(time, page);
         JSONObject jsonObject = new JSONObject();
+        jsonObject.put("pageCount",totalPage);
         jsonObject.put("courses", courses);
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");

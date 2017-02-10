@@ -1,6 +1,7 @@
 package service.impl;
 
 import DAO.CourseDAO;
+import DAO.querypage.Page;
 import domain.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,11 @@ public class CourseServiceImpl implements CourseService{
         courseDAO.update(oldCourse);
     }
 
-    public List<Course> getCourseByTime(String time) {
-        return courseDAO.getByTime(time);
+    public int getPageCount(int everyPage) {
+        return courseDAO.getPageCount(everyPage);
+    }
+
+    public List<Course> getCourseByTime(String time, Page page) {
+        return courseDAO.getByTime(time, page);
     }
 }

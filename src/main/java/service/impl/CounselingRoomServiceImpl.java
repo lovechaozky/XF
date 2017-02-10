@@ -1,6 +1,7 @@
 package service.impl;
 
 import DAO.CounselingRoomDAO;
+import DAO.querypage.Page;
 import domain.CounselingRoom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,10 @@ public class CounselingRoomServiceImpl implements CounselingRoomService{
     @Autowired
     CounselingRoomDAO counselingRoomDAO;
 
+    public int getPageCount(int everyPage) {
+        return counselingRoomDAO.getPageCount(everyPage);
+    }
+
     public void addCounselingRoom(CounselingRoom counselingRoom) {
         counselingRoomDAO.add(counselingRoom);
     }
@@ -30,11 +35,11 @@ public class CounselingRoomServiceImpl implements CounselingRoomService{
         counselingRoomDAO.update(oldCounselingRoom);
     }
 
-    public List<CounselingRoom> getCounselingRoomByTime(String time) {
-        return counselingRoomDAO.getByTime(time);
+    public List<CounselingRoom> getCounselingRoomByTime(String time, Page page) {
+        return counselingRoomDAO.getByTime(time, page);
     }
 
-    public List<CounselingRoom> getCounselingRoomByPlace(String place) {
-        return counselingRoomDAO.getByPlace(place);
+    public List<CounselingRoom> getCounselingRoomByPlace(String place, Page page) {
+        return counselingRoomDAO.getByPlace(place, page);
     }
 }
