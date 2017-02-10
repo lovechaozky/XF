@@ -123,3 +123,28 @@
 根据地点查询辅导室：getCounselingRoomByPlace
 需求：地点place
 成功：jsonObject.put("counselingRooms", counselingRooms);
+
+25、
+根据页号获取活动列表：listActivities
+需求：页号 requestPage
+成功：     jsonObject.put("pageCount",totalPage); jsonObject.put("activities", list);
+
+26、
+根据活动的ID获取活动：getActivity
+需求：id id
+成功：jsonObject.put("activity", activity);jsonObject.put("content",content);
+
+27、
+管理员添加活动：addActivity
+需求：活动标题 title   活动时间 date   内容文件路径 address
+成功： jsonObject.put("addActivity", "success");
+
+28、
+管理员修改活动信息：updateActivity
+需求：活动标题 title   活动时间 date   内容文件路径 address
+成功：jsonObject.put("updateActivity","success");
+
+29、
+管理员删除活动信息：deleteActivity
+需求：活动Id id
+成功： jsonObject.put("deleteActivity", "success");

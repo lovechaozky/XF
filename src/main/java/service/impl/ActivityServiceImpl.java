@@ -1,6 +1,7 @@
 package service.impl;
 
 import DAO.ActivityDAO;
+import DAO.querypage.Page;
 import domain.Activity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,18 @@ public class ActivityServiceImpl implements ActivityService {
     ActivityDAO activityDAO;
     public List<Activity> list() {
         return activityDAO.findAll(Activity.class);
+    }
+
+    public List<Activity> list(Page page) {
+        return activityDAO.listActivities(page);
+    }
+
+    public int getPageCount(int i) {
+        return activityDAO.getPageCount(i);
+    }
+
+    public Activity get(int id) {
+        return activityDAO.get(Activity.class,id);
     }
 
     public void add(Activity activity) {
