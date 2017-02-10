@@ -68,3 +68,58 @@
 13、
 查询所有学习资料：getAllMaterial
 成功：jsonObject.put("materials", materials);
+
+14、
+进行申请：addApplication
+需求：申请人person，类型type（包括辅导室使用申请，个人自习申请，个人一对一辅导申请，课程辅导申请），细节描述detail，时间time
+成功：jsonObject.put("application", "success");
+
+15、
+管理员批阅申请：updateApplication
+需求：细节回复detail，申请的id：id
+成功：jsonObject.put("updateApplication", "success");
+
+16、
+申请者查看自己的申请情况：getApplicationByPerson
+需求：申请人person
+成功：jsonObject.put("applications", applications);
+
+17、
+管理员查看未批阅的申请：getApplicationByState
+需求：无
+成功：jsonObject.put("applications", applications);
+
+18、
+管理员添加课程通知：addCourse
+需求：课程名course，时间time，地点place
+成功：jsonObject.put("addCourse", "success");
+
+19、
+管理员修改课程通知：updateCourse
+需求：课程名course，时间time，地点place，课程通知id：id
+成功：jsonObject.put("updateCourse", "success");
+
+20、
+查看课程通知：getCourseByTime
+需求：时间time
+成功：jsonObject.put("courses", courses);
+
+21、
+管理员添加辅导室自习时间：addCounselingRoom
+需求：时间time，地点place
+成功：jsonObject.put("addCounselingRoom", "success");
+
+22、
+管理员修改辅导室自习时间：updateCounselingRoom
+需求：时间time,地点place,对应id：id
+成功：jsonObject.put("updateCounselingRoom", "success");
+
+23、
+根据时间查询辅导室：getCounselingRoomByTime
+需求：时间time
+成功：jsonObject.put("counselingRooms", counselingRooms);
+
+24、
+根据地点查询辅导室：getCounselingRoomByPlace
+需求：地点place
+成功：jsonObject.put("counselingRooms", counselingRooms);
