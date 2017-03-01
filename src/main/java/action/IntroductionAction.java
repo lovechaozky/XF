@@ -70,7 +70,7 @@ public class IntroductionAction extends ActionSupport implements ServletResponse
         Introduction introduction = introductionService.get();
 //        System.out.println(introduction.toString());
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("introduction", introduction);
+        jsonObject.put("introduction", introduction)
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
