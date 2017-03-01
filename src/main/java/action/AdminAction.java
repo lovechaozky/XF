@@ -1,6 +1,7 @@
 package action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ognl.accessor.ObjectAccessor;
 import domain.Admin;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
@@ -27,7 +28,7 @@ public class AdminAction extends ActionSupport implements ServletResponseAware, 
 
     HttpServletResponse response;
     HttpServletRequest request;
-    Map session;
+    Map<String, Object> session;
     AdminService adminService;
 
     public AdminAction(){

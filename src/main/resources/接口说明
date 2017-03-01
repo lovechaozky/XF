@@ -1,181 +1,181 @@
-1¡¢
-¹ÜÀíÔ±µÇÂ¼£ºadminLogin
-ĞèÇó£ºÓÃ»§Ãûaccount£¬ÃÜÂëpassword
-Ê§°Ü£ºjsonObject.put("adminLoginState", "fail");
-³É¹¦£ºjsonObject.put("adminLoginState", "success");session.put("admin", admin);
+1ã€
+ç®¡ç†å‘˜ç™»å½•ï¼šadminLogin
+éœ€æ±‚ï¼šç”¨æˆ·åaccountï¼Œå¯†ç password
+å¤±è´¥ï¼šjsonObject.put("adminLoginState", "fail");
+æˆåŠŸï¼šjsonObject.put("adminLoginState", "success");session.put("admin", admin);
 
-2¡¢
-ÖĞĞÄ¼ò½é±à¼­£ºupdateIntroduction
-ĞèÇó£ºÖĞĞÄ¼ò½éintroduction£¬ÕÂ³Ìconstitution£¬¹æÕÂÖÆ¶Èrule
-³É¹¦£ºjsonObject.put("updateIntroductionState", "success");
+2ã€
+ä¸­å¿ƒç®€ä»‹ç¼–è¾‘ï¼šupdateIntroduction
+éœ€æ±‚ï¼šä¸­å¿ƒç®€ä»‹introductionï¼Œç« ç¨‹constitutionï¼Œè§„ç« åˆ¶åº¦rule
+æˆåŠŸï¼šjsonObject.put("updateIntroductionState", "success");
 
-3¡¢
-ÖĞĞÄ¼ò½é²é¿´£ºgetIntroduction
-ĞèÇó£ºÖĞĞÄ¼ò½éintroduction£¬ÕÂ³Ìconstitution£¬¹æÕÂÖÆ¶Èrule
-³É¹¦£ºjsonObject.put("introduction", introduction);
+3ã€
+ä¸­å¿ƒç®€ä»‹æŸ¥çœ‹ï¼šgetIntroduction
+éœ€æ±‚ï¼šä¸­å¿ƒç®€ä»‹introductionï¼Œç« ç¨‹constitutionï¼Œè§„ç« åˆ¶åº¦rule
+æˆåŠŸï¼šjsonObject.put("introduction", introduction);
 
-4¡¢
-ÓÃ»§ÃûÊÇ·ñ´æÔÚ£ºisUsernameExist
-ĞèÇó£ºÓÃ»§Ãûusername
-´æÔÚ£ºjsonObject.put("isExist", "yes");
-²»´æÔÚ£ºjsonObject.put("isExist", "no");
+4ã€
+ç”¨æˆ·åæ˜¯å¦å­˜åœ¨ï¼šisUsernameExist
+éœ€æ±‚ï¼šç”¨æˆ·åusername
+å­˜åœ¨ï¼šjsonObject.put("isExist", "yes");
+ä¸å­˜åœ¨ï¼šjsonObject.put("isExist", "no");
 
-5¡¢
-ÓÃ»§×¢²á£ºregister
-ĞèÇó£ºÓÃ»§Ãûusername£¬ÃÜÂëpassword£¬°à¼¶classes£¬Ñ§ºÅ£ºnumber£¬ÊÖ»úºÅ£ºphone£¬QQ£ºqq
-³É¹¦£ºjsonObject.put("register", "success");
+5ã€
+ç”¨æˆ·æ³¨å†Œï¼šregister
+éœ€æ±‚ï¼šç”¨æˆ·åusernameï¼Œå¯†ç passwordï¼Œç­çº§classesï¼Œå­¦å·ï¼šnumberï¼Œæ‰‹æœºå·ï¼šphoneï¼ŒQQï¼šqq
+æˆåŠŸï¼šjsonObject.put("register", "success");
 
-6¡¢
-ÓÃ»§µÇÂ¼£ºlogin
-ĞèÇó£ºÓÃ»§Ãûusername£¬ÃÜÂëpassword
-Ê§°Ü£ºjsonObject.put("loginState", "fail");
-³É¹¦£ºjsonObject.put("loginState", "success");session.put("person", person);
+6ã€
+ç”¨æˆ·ç™»å½•ï¼šlogin
+éœ€æ±‚ï¼šç”¨æˆ·åusernameï¼Œå¯†ç password
+å¤±è´¥ï¼šjsonObject.put("loginState", "fail");
+æˆåŠŸï¼šjsonObject.put("loginState", "success");session.put("person", person);
 
-7¡¢
-¸üĞÂÓÃ»§ĞÅÏ¢£ºupdatePersonInfo
-ĞèÇó£º°à¼¶classes£¬Ñ§ºÅ£ºnumber£¬ÊÖ»úºÅ£ºphone£¬QQ£ºqq
-³É¹¦£ºjsonObject.put("updatePersonInfo", "success");session.put("person", newPerson);
+7ã€
+æ›´æ–°ç”¨æˆ·ä¿¡æ¯ï¼šupdatePersonInfo
+éœ€æ±‚ï¼šç­çº§classesï¼Œå­¦å·ï¼šnumberï¼Œæ‰‹æœºå·ï¼šphoneï¼ŒQQï¼šqq
+æˆåŠŸï¼šjsonObject.put("updatePersonInfo", "success");session.put("person", newPerson);
 
-8¡¢
-ĞŞ¸ÄÓÃ»§ÃÜÂë£ºupdatePersonPassword
-ĞèÇó£º¾ÉÃÜÂë£ºoldPassword£¬ĞÂÃÜÂë£ºpassword
-Ê§°Ü£ºjsonObject.put("updatePersonPassword", "fail");
-³É¹¦£ºjsonObject.put("updatePersonPassword", "success");session.put("person", newPerson);
+8ã€
+ä¿®æ”¹ç”¨æˆ·å¯†ç ï¼šupdatePersonPassword
+éœ€æ±‚ï¼šæ—§å¯†ç ï¼šoldPasswordï¼Œæ–°å¯†ç ï¼špassword
+å¤±è´¥ï¼šjsonObject.put("updatePersonPassword", "fail");
+æˆåŠŸï¼šjsonObject.put("updatePersonPassword", "success");session.put("person", newPerson);
 
-9¡¢
-¸ù¾İÓÃ»§Ãû»ñÈ¡ÓÃ»§ĞÅÏ¢£ºgetPersonByUsername
-ĞèÇó£ºÓÃ»§Ãûusername
-Ê§°Ü£ºjsonObject.put("briefPersonInfo", "fail");
-³É¹¦£ºjsonObject.put("briefPersonInfo", "success");session.put("briefPersonInfo", person);£¨ÎŞÃÜÂë£©
+9ã€
+æ ¹æ®ç”¨æˆ·åè·å–ç”¨æˆ·ä¿¡æ¯ï¼šgetPersonByUsername
+éœ€æ±‚ï¼šç”¨æˆ·åusername
+å¤±è´¥ï¼šjsonObject.put("briefPersonInfo", "fail");
+æˆåŠŸï¼šjsonObject.put("briefPersonInfo", "success");session.put("briefPersonInfo", person);ï¼ˆæ— å¯†ç ï¼‰
 
-10¡¢
-¸ù¾İÓÃ»§id»ñÈ¡ÓÃ»§ĞÅÏ¢£ºgetPersonById
-ĞèÇó£ºÓÃ»§id£ºid
-Ê§°Ü£ºjsonObject.put("briefPersonInfo", "fail");
-³É¹¦£ºjsonObject.put("briefPersonInfo", "success");session.put("briefPersonInfo", person);£¨ÎŞÃÜÂë£©
+10ã€
+æ ¹æ®ç”¨æˆ·idè·å–ç”¨æˆ·ä¿¡æ¯ï¼šgetPersonById
+éœ€æ±‚ï¼šç”¨æˆ·idï¼šid
+å¤±è´¥ï¼šjsonObject.put("briefPersonInfo", "fail");
+æˆåŠŸï¼šjsonObject.put("briefPersonInfo", "success");session.put("briefPersonInfo", person);ï¼ˆæ— å¯†ç ï¼‰
 
-11¡¢
-Ñ§Ï°×ÊÁÏÉÏ´«£¨¹ÜÀíÔ±£©£ºaddMaterial
-ĞèÇó£ºÎÄ¼şÃû³Ætitle£¬ÎÄ¼şfile
-³É¹¦£ºjsonObject.put("addMaterial", "success");
-Ê§°Ü£ºjsonObject.put("addMaterial", "fail");
+11ã€
+å­¦ä¹ èµ„æ–™ä¸Šä¼ ï¼ˆç®¡ç†å‘˜ï¼‰ï¼šaddMaterial
+éœ€æ±‚ï¼šæ–‡ä»¶åç§°titleï¼Œæ–‡ä»¶file
+æˆåŠŸï¼šjsonObject.put("addMaterial", "success");
+å¤±è´¥ï¼šjsonObject.put("addMaterial", "fail");
 
-12¡¢
-É¾³ıÑ§Ï°×ÊÁÏ£¨¹ÜÀíÔ±£©£ºdeleteMaterial
-ĞèÇó£ºÎÄ¼şid£ºid
-³É¹¦£ºjsonObject.put("deleteMaterial", "success");
+12ã€
+åˆ é™¤å­¦ä¹ èµ„æ–™ï¼ˆç®¡ç†å‘˜ï¼‰ï¼šdeleteMaterial
+éœ€æ±‚ï¼šæ–‡ä»¶idï¼šid
+æˆåŠŸï¼šjsonObject.put("deleteMaterial", "success");
 
-13¡¢
-²éÑ¯ËùÓĞÑ§Ï°×ÊÁÏ£ºgetAllMaterial
-ĞèÇó£ºÒ³ºÅrequestPage
-³É¹¦£ºjsonObject.put("pageCount",totalPage);jsonObject.put("materials", materials);
+13ã€
+æŸ¥è¯¢æ‰€æœ‰å­¦ä¹ èµ„æ–™ï¼šgetAllMaterial
+éœ€æ±‚ï¼šé¡µå·requestPage
+æˆåŠŸï¼šjsonObject.put("pageCount",totalPage);jsonObject.put("materials", materials);
 
-14¡¢
-½øĞĞÉêÇë£ºaddApplication
-ĞèÇó£ºÉêÇëÈËperson£¬ÀàĞÍtype£¨°üÀ¨¸¨µ¼ÊÒÊ¹ÓÃÉêÇë£¬¸öÈË×ÔÏ°ÉêÇë£¬¸öÈËÒ»¶ÔÒ»¸¨µ¼ÉêÇë£¬¿Î³Ì¸¨µ¼ÉêÇë£©£¬Ï¸½ÚÃèÊödetail£¬Ê±¼ätime
-³É¹¦£ºjsonObject.put("application", "success");
+14ã€
+è¿›è¡Œç”³è¯·ï¼šaddApplication
+éœ€æ±‚ï¼šç”³è¯·äººpersonï¼Œç±»å‹typeï¼ˆåŒ…æ‹¬è¾…å¯¼å®¤ä½¿ç”¨ç”³è¯·ï¼Œä¸ªäººè‡ªä¹ ç”³è¯·ï¼Œä¸ªäººä¸€å¯¹ä¸€è¾…å¯¼ç”³è¯·ï¼Œè¯¾ç¨‹è¾…å¯¼ç”³è¯·ï¼‰ï¼Œç»†èŠ‚æè¿°detailï¼Œæ—¶é—´time
+æˆåŠŸï¼šjsonObject.put("application", "success");
 
-15¡¢
-¹ÜÀíÔ±ÅúÔÄÉêÇë£ºupdateApplication
-ĞèÇó£ºÏ¸½Ú»Ø¸´detail£¬ÉêÇëµÄid£ºid
-³É¹¦£ºjsonObject.put("updateApplication", "success");
+15ã€
+ç®¡ç†å‘˜æ‰¹é˜…ç”³è¯·ï¼šupdateApplication
+éœ€æ±‚ï¼šç»†èŠ‚å›å¤detailï¼Œç”³è¯·çš„idï¼šid
+æˆåŠŸï¼šjsonObject.put("updateApplication", "success");
 
-16¡¢
-ÉêÇëÕß²é¿´×Ô¼ºµÄÉêÇëÇé¿ö£ºgetApplicationByPerson
-ĞèÇó£ºÉêÇëÈËperson,Ò³ºÅrequestPage
-³É¹¦£ºjsonObject.put("pageCount",totalPage);jsonObject.put("applications", applications);
+16ã€
+ç”³è¯·è€…æŸ¥çœ‹è‡ªå·±çš„ç”³è¯·æƒ…å†µï¼šgetApplicationByPerson
+éœ€æ±‚ï¼šç”³è¯·äººperson,é¡µå·requestPage
+æˆåŠŸï¼šjsonObject.put("pageCount",totalPage);jsonObject.put("applications", applications);
 
-17¡¢
-¹ÜÀíÔ±²é¿´Î´ÅúÔÄµÄÉêÇë£ºgetApplicationByState
-ĞèÇó£ºÒ³ºÅrequestPage
-³É¹¦£ºjsonObject.put("pageCount",totalPage);jsonObject.put("applications", applications);
+17ã€
+ç®¡ç†å‘˜æŸ¥çœ‹æœªæ‰¹é˜…çš„ç”³è¯·ï¼šgetApplicationByState
+éœ€æ±‚ï¼šé¡µå·requestPage
+æˆåŠŸï¼šjsonObject.put("pageCount",totalPage);jsonObject.put("applications", applications);
 
-18¡¢
-¹ÜÀíÔ±Ìí¼Ó¿Î³ÌÍ¨Öª£ºaddCourse
-ĞèÇó£º¿Î³ÌÃûcourse£¬Ê±¼ätime£¬µØµãplace
-³É¹¦£ºjsonObject.put("addCourse", "success");
+18ã€
+ç®¡ç†å‘˜æ·»åŠ è¯¾ç¨‹é€šçŸ¥ï¼šaddCourse
+éœ€æ±‚ï¼šè¯¾ç¨‹åcourseï¼Œæ—¶é—´timeï¼Œåœ°ç‚¹place
+æˆåŠŸï¼šjsonObject.put("addCourse", "success");
 
-19¡¢
-¹ÜÀíÔ±ĞŞ¸Ä¿Î³ÌÍ¨Öª£ºupdateCourse
-ĞèÇó£º¿Î³ÌÃûcourse£¬Ê±¼ätime£¬µØµãplace£¬¿Î³ÌÍ¨Öªid£ºid
-³É¹¦£ºjsonObject.put("updateCourse", "success");
+19ã€
+ç®¡ç†å‘˜ä¿®æ”¹è¯¾ç¨‹é€šçŸ¥ï¼šupdateCourse
+éœ€æ±‚ï¼šè¯¾ç¨‹åcourseï¼Œæ—¶é—´timeï¼Œåœ°ç‚¹placeï¼Œè¯¾ç¨‹é€šçŸ¥idï¼šid
+æˆåŠŸï¼šjsonObject.put("updateCourse", "success");
 
-20¡¢
-²é¿´¿Î³ÌÍ¨Öª£ºgetCourseByTime
-ĞèÇó£ºÊ±¼ätime£¬Ò³ºÅrequestPage
-³É¹¦£ºjsonObject.put("pageCount",totalPage);jsonObject.put("courses", courses);
+20ã€
+æŸ¥çœ‹è¯¾ç¨‹é€šçŸ¥ï¼šgetCourseByTime
+éœ€æ±‚ï¼šæ—¶é—´timeï¼Œé¡µå·requestPage
+æˆåŠŸï¼šjsonObject.put("pageCount",totalPage);jsonObject.put("courses", courses);
 
-21¡¢
-¹ÜÀíÔ±Ìí¼Ó¸¨µ¼ÊÒ×ÔÏ°Ê±¼ä£ºaddCounselingRoom
-ĞèÇó£ºÊ±¼ätime£¬µØµãplace
-³É¹¦£ºjsonObject.put("addCounselingRoom", "success");
+21ã€
+ç®¡ç†å‘˜æ·»åŠ è¾…å¯¼å®¤è‡ªä¹ æ—¶é—´ï¼šaddCounselingRoom
+éœ€æ±‚ï¼šæ—¶é—´timeï¼Œåœ°ç‚¹place
+æˆåŠŸï¼šjsonObject.put("addCounselingRoom", "success");
 
-22¡¢
-¹ÜÀíÔ±ĞŞ¸Ä¸¨µ¼ÊÒ×ÔÏ°Ê±¼ä£ºupdateCounselingRoom
-ĞèÇó£ºÊ±¼ätime,µØµãplace,¶ÔÓ¦id£ºid
-³É¹¦£ºjsonObject.put("updateCounselingRoom", "success");
+22ã€
+ç®¡ç†å‘˜ä¿®æ”¹è¾…å¯¼å®¤è‡ªä¹ æ—¶é—´ï¼šupdateCounselingRoom
+éœ€æ±‚ï¼šæ—¶é—´time,åœ°ç‚¹place,å¯¹åº”idï¼šid
+æˆåŠŸï¼šjsonObject.put("updateCounselingRoom", "success");
 
-23¡¢
-¸ù¾İÊ±¼ä²éÑ¯¸¨µ¼ÊÒ£ºgetCounselingRoomByTime
-ĞèÇó£ºÊ±¼ätime£¬Ò³ºÅrequestPage
-³É¹¦£ºjsonObject.put("pageCount",totalPage);jsonObject.put("counselingRooms", counselingRooms);
+23ã€
+æ ¹æ®æ—¶é—´æŸ¥è¯¢è¾…å¯¼å®¤ï¼šgetCounselingRoomByTime
+éœ€æ±‚ï¼šæ—¶é—´timeï¼Œé¡µå·requestPage
+æˆåŠŸï¼šjsonObject.put("pageCount",totalPage);jsonObject.put("counselingRooms", counselingRooms);
 
-24¡¢
-¸ù¾İµØµã²éÑ¯¸¨µ¼ÊÒ£ºgetCounselingRoomByPlace
-ĞèÇó£ºµØµãplace,Ò³ºÅrequestPage
-³É¹¦£ºjsonObject.put("pageCount",totalPage);jsonObject.put("counselingRooms", counselingRooms);
+24ã€
+æ ¹æ®åœ°ç‚¹æŸ¥è¯¢è¾…å¯¼å®¤ï¼šgetCounselingRoomByPlace
+éœ€æ±‚ï¼šåœ°ç‚¹place,é¡µå·requestPage
+æˆåŠŸï¼šjsonObject.put("pageCount",totalPage);jsonObject.put("counselingRooms", counselingRooms);
 
-25¡¢
-¸ù¾İÒ³ºÅ»ñÈ¡»î¶¯ÁĞ±í£ºlistActivities
-ĞèÇó£ºÒ³ºÅ requestPage
-³É¹¦£ºjsonObject.put("pageCount",totalPage); jsonObject.put("activities", list);
+25ã€
+æ ¹æ®é¡µå·è·å–æ´»åŠ¨åˆ—è¡¨ï¼šlistActivities
+éœ€æ±‚ï¼šé¡µå· requestPage
+æˆåŠŸï¼šjsonObject.put("pageCount",totalPage); jsonObject.put("activities", list);
 
-26¡¢
-¸ù¾İ»î¶¯µÄID»ñÈ¡»î¶¯£ºgetActivity
-ĞèÇó£ºid id
-³É¹¦£ºjsonObject.put("activity", activity);jsonObject.put("content",content);
+26ã€
+æ ¹æ®æ´»åŠ¨çš„IDè·å–æ´»åŠ¨ï¼šgetActivity
+éœ€æ±‚ï¼šid id
+æˆåŠŸï¼šjsonObject.put("activity", activity);jsonObject.put("content",content);
 
-27¡¢
-¹ÜÀíÔ±Ìí¼Ó»î¶¯£ºaddActivity
-ĞèÇó£º»î¶¯±êÌâ title   »î¶¯Ê±¼ä date   ÄÚÈİÎÄ¼şÂ·¾¶ address
-³É¹¦£ºjsonObject.put("addActivity", "success");
+27ã€
+ç®¡ç†å‘˜æ·»åŠ æ´»åŠ¨ï¼šaddActivity
+éœ€æ±‚ï¼šæ´»åŠ¨æ ‡é¢˜ title   æ´»åŠ¨æ—¶é—´ date   å†…å®¹æ–‡ä»¶è·¯å¾„ address
+æˆåŠŸï¼šjsonObject.put("addActivity", "success");
 
-28¡¢
-¹ÜÀíÔ±ĞŞ¸Ä»î¶¯ĞÅÏ¢£ºupdateActivity
-ĞèÇó£º»î¶¯±êÌâ title   »î¶¯Ê±¼ä date   ÄÚÈİÎÄ¼şÂ·¾¶ address
-³É¹¦£ºjsonObject.put("updateActivity","success");
+28ã€
+ç®¡ç†å‘˜ä¿®æ”¹æ´»åŠ¨ä¿¡æ¯ï¼šupdateActivity
+éœ€æ±‚ï¼šæ´»åŠ¨æ ‡é¢˜ title   æ´»åŠ¨æ—¶é—´ date   å†…å®¹æ–‡ä»¶è·¯å¾„ address
+æˆåŠŸï¼šjsonObject.put("updateActivity","success");
 
-29¡¢
-¹ÜÀíÔ±É¾³ı»î¶¯ĞÅÏ¢£ºdeleteActivity
-ĞèÇó£º»î¶¯Id id
-³É¹¦£ºjsonObject.put("deleteActivity", "success");
+29ã€
+ç®¡ç†å‘˜åˆ é™¤æ´»åŠ¨ä¿¡æ¯ï¼šdeleteActivity
+éœ€æ±‚ï¼šæ´»åŠ¨Id id
+æˆåŠŸï¼šjsonObject.put("deleteActivity", "success");
 
-30¡¢
-Ìí¼ÓÆÀÂÛ£ºaddCommunication
-ĞèÇó£ºÊ±¼ätime£¬·¢±íÈËperson£¬ÄÚÈİmessage
-³É¹¦£ºjsonObject.put("addCommunication", "success");
+30ã€
+æ·»åŠ è¯„è®ºï¼šaddCommunication
+éœ€æ±‚ï¼šæ—¶é—´timeï¼Œå‘è¡¨äººpersonï¼Œå†…å®¹message
+æˆåŠŸï¼šjsonObject.put("addCommunication", "success");
 
-31¡¢
-ĞŞ¸ÄÆÀÂÛ£ºupdateCommunication
-ĞèÇó£ºÄÚÈİmessage£¬¶ÔÓ¦id£ºid
-³É¹¦£ºjsonObject.put("updateCommunication", "success");
+31ã€
+ä¿®æ”¹è¯„è®ºï¼šupdateCommunication
+éœ€æ±‚ï¼šå†…å®¹messageï¼Œå¯¹åº”idï¼šid
+æˆåŠŸï¼šjsonObject.put("updateCommunication", "success");
 
-32¡¢
-É¾³ıÆÀÂÛ£ºdeleteCommunication
-ĞèÇó£º¶ÔÓ¦id£ºid
-³É¹¦£ºjsonObject.put("deleteCommunication", "success");
+32ã€
+åˆ é™¤è¯„è®ºï¼šdeleteCommunication
+éœ€æ±‚ï¼šå¯¹åº”idï¼šid
+æˆåŠŸï¼šjsonObject.put("deleteCommunication", "success");
 
-33¡¢
-°´Ê±¼ä²é¿´ÆÀÂÛ£ºgetCommunicationByTime
-ĞèÇó£ºÊ±¼ätime,Ò³ºÅrequestPage
-³É¹¦£ºjsonObject.put("pageCount",totalPage);jsonObject.put("communications", communications);
+33ã€
+æŒ‰æ—¶é—´æŸ¥çœ‹è¯„è®ºï¼šgetCommunicationByTime
+éœ€æ±‚ï¼šæ—¶é—´time,é¡µå·requestPage
+æˆåŠŸï¼šjsonObject.put("pageCount",totalPage);jsonObject.put("communications", communications);
 
-34¡¢
-°´ÈËÎï²é¿´ÆÀÂÛ£ºgetCommunicationByPerson
-ĞèÇó£ºÈËÎïperson,Ò³ºÅrequestPage
-³É¹¦£ºjsonObject.put("pageCount",totalPage);jsonObject.put("communications", communications);
+34ã€
+æŒ‰äººç‰©æŸ¥çœ‹è¯„è®ºï¼šgetCommunicationByPerson
+éœ€æ±‚ï¼šäººç‰©person,é¡µå·requestPage
+æˆåŠŸï¼šjsonObject.put("pageCount",totalPage);jsonObject.put("communications", communications);
 
-35¡¢
-²é¿´ËùÓĞÆÀÂÛ£ºgetAllCommunication
-ĞèÇó£ºÒ³ºÅrequestPage
-³É¹¦£ºjsonObject.put("pageCount",totalPage);jsonObject.put("communications", communications);
+35ã€
+æŸ¥çœ‹æ‰€æœ‰è¯„è®ºï¼šgetAllCommunication
+éœ€æ±‚ï¼šé¡µå·requestPage
+æˆåŠŸï¼šjsonObject.put("pageCount",totalPage);jsonObject.put("communications", communications);
