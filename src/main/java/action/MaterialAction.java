@@ -2,6 +2,7 @@ package action;
 
 import DAO.querypage.Page;
 import DAO.querypage.PageUtils;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opensymphony.xwork2.ActionSupport;
 import domain.Material;
 import org.apache.commons.io.FileUtils;
@@ -20,6 +21,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,9 +39,11 @@ public class MaterialAction extends ActionSupport implements ServletResponseAwar
     Map session;
     MaterialService materialService;
     File file;
+    ObjectMapper objectMapper;
 
     public MaterialAction(){
         super();
+        objectMapper = new ObjectMapper();
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         materialService = (MaterialService) applicationContext.getBean("MaterialService");
     }
@@ -45,7 +51,7 @@ public class MaterialAction extends ActionSupport implements ServletResponseAwar
     @Action(value = "addMaterial")
     public void addMaterial()throws Exception{
         String title = request.getParameter("title");
-        JSONObject jsonObject = new JSONObject();
+        Map map = new HashMap();
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         if(file != null){
@@ -60,13 +66,16 @@ public class MaterialAction extends ActionSupport implements ServletResponseAwar
             String address = saveFile.getAbsolutePath();
             material.setAddress(address);
             materialService.addMaterial(material);
-            jsonObject.put("addMaterial", "success");
+            map.put("addMaterial", "success");
         }
         else{
-            jsonObject.put("addMaterial", "fail");
+            map.put("addMaterial", "fail");
         }
         PrintWriter printWriter = response.getWriter();
-        printWriter.write(jsonObject.toString());
+        Writer writer = new StringWriter();
+        objectMapper.writeValue(writer, map);
+        printWriter.write(writer.toString());
+        writer.close();
         printWriter.close();
     }
 
@@ -80,10 +89,13 @@ public class MaterialAction extends ActionSupport implements ServletResponseAwar
         }
         response.setCharacterEncoding("utf-8");
         response.setContentType("html/text;charset=utf-8");
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("deleteMaterial", "success");
+        Map map = new HashMap();
+        map.put("deleteMaterial", "success");
         PrintWriter printWriter = response.getWriter();
-        printWriter.write(jsonObject.toString());
+        Writer writer = new StringWriter();
+        objectMapper.writeValue(writer, map);
+        printWriter.write(writer.toString());
+        writer.close();
         printWriter.close();
     }
 
@@ -94,13 +106,16 @@ public class MaterialAction extends ActionSupport implements ServletResponseAwar
         int totalPage = materialService.getPageCount(everyPage);
         Page page = PageUtils.createPage(everyPage, totalPage, requestPage);
         List<Material> materials = materialService.getAllMaterial(page);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("pageCount",totalPage);
-        jsonObject.put("materials", materials);
+        Map map = new HashMap();
+        map.put("pageCount",totalPage);
+        map.put("materials", materials);
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
-        printWriter.write(jsonObject.toString());
+        Writer writer = new StringWriter();
+        objectMapper.writeValue(writer, map);
+        printWriter.write(writer.toString());
+        writer.close();
         printWriter.close();
     }
 

@@ -2,6 +2,7 @@ package action;
 
 import DAO.querypage.Page;
 import DAO.querypage.PageUtils;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opensymphony.xwork2.ActionSupport;
 import domain.Course;
 import org.apache.struts2.convention.annotation.Action;
@@ -18,6 +19,9 @@ import service.CourseService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,9 +36,11 @@ public class CourseAction extends ActionSupport implements ServletRequestAware,S
     HttpServletResponse response;
     Map session;
     CourseService courseService;
+    ObjectMapper objectMapper;
 
     public CourseAction(){
         super();
+        objectMapper = new ObjectMapper();
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         courseService = (CourseService) applicationContext.getBean("CourseService");
     }
@@ -49,12 +55,15 @@ public class CourseAction extends ActionSupport implements ServletRequestAware,S
         course.setTime(time);
         course.setPlace(place);
         courseService.addCourse(course);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("addCourse", "success");
+        Map map = new HashMap();
+        map.put("addCourse", "success");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
-        printWriter.write(jsonObject.toString());
+        Writer writer = new StringWriter();
+        objectMapper.writeValue(writer, map);
+        printWriter.write(writer.toString());
+        writer.close();
         printWriter.close();
     }
 
@@ -70,12 +79,15 @@ public class CourseAction extends ActionSupport implements ServletRequestAware,S
         course.setTime(time);
         course.setId(id);
         courseService.updateCourse(course);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("updateCourse", "success");
+        Map map = new HashMap();
+        map.put("updateCourse", "success");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
-        printWriter.write(jsonObject.toString());
+        Writer writer = new StringWriter();
+        objectMapper.writeValue(writer, map);
+        printWriter.write(writer.toString());
+        writer.close();
         printWriter.close();
     }
 
@@ -87,13 +99,16 @@ public class CourseAction extends ActionSupport implements ServletRequestAware,S
         int totalPage = courseService.getPageCount(everyPage);
         Page page = PageUtils.createPage(everyPage, totalPage, requestPage);
         List<Course> courses = courseService.getCourseByTime(time, page);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("pageCount",totalPage);
-        jsonObject.put("courses", courses);
+        Map map = new HashMap();
+        map.put("pageCount",totalPage);
+        map.put("courses", courses);
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
-        printWriter.write(jsonObject.toString());
+        Writer writer = new StringWriter();
+        objectMapper.writeValue(writer, map);
+        printWriter.write(writer.toString());
+        writer.close();
         printWriter.close();
     }
 

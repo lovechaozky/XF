@@ -2,6 +2,7 @@ package action;
 
 import DAO.querypage.Page;
 import DAO.querypage.PageUtils;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opensymphony.xwork2.ActionSupport;
 import domain.Activity;
 import org.apache.struts2.convention.annotation.Action;
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,9 +36,11 @@ public class ActivityAction extends ActionSupport implements ServletResponseAwar
     private HttpServletResponse response;
     private Map session;
     ActivityService activityService;
+    ObjectMapper objectMapper;
 
     public ActivityAction(){
         super();
+        objectMapper = new ObjectMapper();
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         activityService = (ActivityService) applicationContext.getBean("ActivityService");
     }
@@ -50,14 +54,17 @@ public class ActivityAction extends ActionSupport implements ServletResponseAwar
         int totalPage = activityService.getPageCount(everyPage);
         Page page = PageUtils.createPage(everyPage,totalPage,requestPage);
         List<Activity> list = activityService.list(page);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("pageCount",totalPage);
-        jsonObject.put("activities", list);
+        Map map = new HashMap();
+        map.put("pageCount",totalPage);
+        map.put("activities", list);
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         try {
             PrintWriter printWriter = response.getWriter();
-            printWriter.write(jsonObject.toString());
+            Writer writer = new StringWriter();
+            objectMapper.writeValue(writer,map);
+            printWriter.write(writer.toString());
+            writer.close();
             printWriter.close();
         }catch (IOException e){
             e.printStackTrace();
@@ -69,7 +76,7 @@ public class ActivityAction extends ActionSupport implements ServletResponseAwar
      */
     @Action("getActivity")
     public void getActivity(){
-        JSONObject jsonObject = new JSONObject();
+        Map map = new HashMap();
         try {
             int id = Integer.valueOf(request.getParameter("id"));
             Activity activity = activityService.get(id);
@@ -82,16 +89,18 @@ public class ActivityAction extends ActionSupport implements ServletResponseAwar
                 sb.append(str);
             }
             String content = sb.toString();
-            jsonObject.put("activity", activity);
-            jsonObject.put("content",content);
+            map.put("activity", activity);
+            map.put("content",content);
             response.setCharacterEncoding("UTF-8");
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter printWriter = response.getWriter();
-            printWriter.write(jsonObject.toString());
+            Writer writer = new StringWriter();
+            objectMapper.writeValue(writer, map);
+            printWriter.write(writer.toString());
+            writer.close();
             printWriter.close();
         }catch (IOException e){
             e.printStackTrace();
-            jsonObject.put("error","can not find the content file");
         }
     }
 
@@ -106,12 +115,15 @@ public class ActivityAction extends ActionSupport implements ServletResponseAwar
         Activity activity = new Activity(title,date,address);
         activityService.add(activity);
         try {
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("addActivity", "success");
+            Map map = new HashMap();
+            map.put("addActivity", "success");
             response.setCharacterEncoding("UTF-8");
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter printWriter = response.getWriter();
-            printWriter.write(jsonObject.toString());
+            Writer writer = new StringWriter();
+            objectMapper.writeValue(writer, map);
+            printWriter.write(writer.toString());
+            writer.close();
             printWriter.close();
         }catch (IOException e){
             e.printStackTrace();
@@ -131,12 +143,15 @@ public class ActivityAction extends ActionSupport implements ServletResponseAwar
         activity.setId(id);
         activityService.update(activity);
         try {
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("updateActivity", "success");
+            Map map = new HashMap();
+            map.put("updateActivity", "success");
             response.setCharacterEncoding("UTF-8");
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter printWriter = response.getWriter();
-            printWriter.write(jsonObject.toString());
+            Writer writer = new StringWriter();
+            objectMapper.writeValue(writer, map);
+            printWriter.write(writer.toString());
+            writer.close();
             printWriter.close();
         }catch (IOException e){
             e.printStackTrace();
@@ -155,12 +170,15 @@ public class ActivityAction extends ActionSupport implements ServletResponseAwar
             return;
         activityService.delete(id);
         try {
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("deleteActivity", "success");
+            Map map = new HashMap();
+            map.put("deleteActivity", "success");
             response.setCharacterEncoding("UTF-8");
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter printWriter = response.getWriter();
-            printWriter.write(jsonObject.toString());
+            Writer writer = new StringWriter();
+            objectMapper.writeValue(writer, map);
+            printWriter.write(writer.toString());
+            writer.close();
             printWriter.close();
         }catch (IOException e){
             e.printStackTrace();

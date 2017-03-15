@@ -1,5 +1,6 @@
 package action;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opensymphony.xwork2.ActionSupport;
 import domain.Admin;
 import org.apache.struts2.convention.annotation.Action;
@@ -16,6 +17,9 @@ import service.AdminService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -29,9 +33,11 @@ public class AdminAction extends ActionSupport implements ServletResponseAware, 
     HttpServletRequest request;
     Map session;
     AdminService adminService;
+    ObjectMapper objectMapper;
 
     public AdminAction(){
         super();
+        objectMapper = new ObjectMapper();
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         adminService = (AdminService) applicationContext.getBean("AdminService");
     }
@@ -42,18 +48,21 @@ public class AdminAction extends ActionSupport implements ServletResponseAware, 
         String password = request.getParameter("password");
         Admin admin = adminService.getAdminByAccountAndPassword(account, password);
 //        System.out.println(admin.toString());
-        JSONObject jsonObject = new JSONObject();
+        Map map = new HashMap();
         if(admin == null){
-            jsonObject.put("adminLoginState", "fail");
+            map.put("adminLoginState", "fail");
         }
         else{
-            jsonObject.put("adminLoginState", "success");
+            map.put("adminLoginState", "success");
             session.put("admin", admin);
         }
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
-        printWriter.write(jsonObject.toString());
+        Writer writer = new StringWriter();
+        objectMapper.writeValue(writer, map);
+        printWriter.write(writer.toString());
+        writer.close();
         printWriter.close();
     }
 

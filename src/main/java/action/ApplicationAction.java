@@ -2,6 +2,7 @@ package action;
 
 import DAO.querypage.Page;
 import DAO.querypage.PageUtils;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opensymphony.xwork2.ActionSupport;
 import domain.Application;
 import domain.Person;
@@ -19,6 +20,9 @@ import service.ApplicationService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,9 +37,11 @@ public class ApplicationAction extends ActionSupport implements ServletRequestAw
     HttpServletResponse response;
     Map session;
     ApplicationService applicationService;
+    ObjectMapper objectMapper;
 
     public ApplicationAction(){
         super();
+        objectMapper = new ObjectMapper();
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         applicationService = (ApplicationService) applicationContext.getBean("ApplicationService");
     }
@@ -56,12 +62,15 @@ public class ApplicationAction extends ActionSupport implements ServletRequestAw
         application.setTime(time);
         application.setType(type);
         applicationService.addApplication(application);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("application", "success");
+        Map map = new HashMap();
+        map.put("application", "success");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
-        printWriter.write(jsonObject.toString());
+        Writer writer = new StringWriter();
+        objectMapper.writeValue(writer, map);
+        printWriter.write(writer.toString());
+        writer.close();
         printWriter.close();
     }
 
@@ -75,12 +84,15 @@ public class ApplicationAction extends ActionSupport implements ServletRequestAw
         application.setDetail(detail);
         application.setState(state);
         applicationService.updateApplication(application);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("updateApplication", "success");
+        Map map = new HashMap();
+        map.put("updateApplication", "success");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
-        printWriter.write(jsonObject.toString());
+        Writer writer = new StringWriter();
+        objectMapper.writeValue(writer, map);
+        printWriter.write(writer.toString());
+        writer.close();
         printWriter.close();
     }
 
@@ -92,13 +104,16 @@ public class ApplicationAction extends ActionSupport implements ServletRequestAw
         int totalPage = applicationService.getPageCount(everyPage);
         Page page = PageUtils.createPage(everyPage, totalPage, requestPage);
         List<Application> applications = applicationService.getApplicationByPerson(person, page);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("pageCount",totalPage);
-        jsonObject.put("applications", applications);
+        Map map = new HashMap();
+        map.put("pageCount",totalPage);
+        map.put("applications", applications);
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
-        printWriter.write(jsonObject.toString());
+        Writer writer = new StringWriter();
+        objectMapper.writeValue(writer, map);
+        printWriter.write(writer.toString());
+        writer.close();
         printWriter.close();
     }
 
@@ -109,13 +124,16 @@ public class ApplicationAction extends ActionSupport implements ServletRequestAw
         int totalPage = applicationService.getPageCount(everyPage);
         Page page = PageUtils.createPage(everyPage, totalPage, requestPage);
         List<Application> applications = applicationService.getApplicationByState("申请中", page);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("pageCount",totalPage);
-        jsonObject.put("applications", applications);
+        Map map = new HashMap();
+        map.put("pageCount",totalPage);
+        map.put("applications", applications);
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
-        printWriter.write(jsonObject.toString());
+        Writer writer = new StringWriter();
+        objectMapper.writeValue(writer, map);
+        printWriter.write(writer.toString());
+        writer.close();
         printWriter.close();
     }
 

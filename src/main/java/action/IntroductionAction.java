@@ -1,5 +1,6 @@
 package action;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opensymphony.xwork2.ActionSupport;
 import domain.Introduction;
 import org.apache.struts2.convention.annotation.Action;
@@ -16,6 +17,9 @@ import service.IntroductionService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -29,9 +33,11 @@ public class IntroductionAction extends ActionSupport implements ServletResponse
     HttpServletResponse response;
     Map session;
     IntroductionService introductionService;
+    ObjectMapper objectMapper;
 
     public IntroductionAction(){
         super();
+        objectMapper = new ObjectMapper();
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         introductionService = (IntroductionService) applicationContext.getBean("IntroductionService");
     }
@@ -56,12 +62,15 @@ public class IntroductionAction extends ActionSupport implements ServletResponse
             introductionService.update(introduction1);
         }
 //        System.out.println(introduction1.toString());
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("updateIntroductionState", "success");
+        Map map = new HashMap();
+        map.put("updateIntroductionState", "success");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
-        printWriter.write(jsonObject.toString());
+        Writer writer = new StringWriter();
+        objectMapper.writeValue(writer, map);
+        printWriter.write(writer.toString());
+        writer.close();
         printWriter.close();
     }
 
@@ -69,12 +78,15 @@ public class IntroductionAction extends ActionSupport implements ServletResponse
     public void getIntroduction()throws Exception{
         Introduction introduction = introductionService.get();
 //        System.out.println(introduction.toString());
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("introduction", introduction);
+        Map map = new HashMap();
+        map.put("introduction", introduction);
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
-        printWriter.write(jsonObject.toString());
+        Writer writer = new StringWriter();
+        objectMapper.writeValue(writer, map);
+        printWriter.write(writer.toString());
+        writer.close();
         printWriter.close();
     }
 

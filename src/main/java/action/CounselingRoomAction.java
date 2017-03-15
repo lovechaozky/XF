@@ -2,6 +2,7 @@ package action;
 
 import DAO.querypage.Page;
 import DAO.querypage.PageUtils;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opensymphony.xwork2.ActionSupport;
 import domain.CounselingRoom;
 import org.apache.struts2.convention.annotation.Action;
@@ -18,6 +19,9 @@ import service.CounselingRoomService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,9 +36,11 @@ public class CounselingRoomAction extends ActionSupport implements ServletRespon
     HttpServletResponse response;
     Map session;
     CounselingRoomService counselingRoomService;
+    ObjectMapper objectMapper;
 
     public CounselingRoomAction(){
         super();
+        objectMapper = new ObjectMapper();
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         counselingRoomService = (CounselingRoomService) applicationContext.getBean("CounselingRoomService");
     }
@@ -47,12 +53,15 @@ public class CounselingRoomAction extends ActionSupport implements ServletRespon
         counselingRoom.setPlace(place);
         counselingRoom.setTime(time);
         counselingRoomService.addCounselingRoom(counselingRoom);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("addCounselingRoom", "success");
+        Map map = new HashMap();
+        map.put("addCounselingRoom", "success");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
-        printWriter.write(jsonObject.toString());
+        Writer writer = new StringWriter();
+        objectMapper.writeValue(writer, map);
+        printWriter.write(writer.toString());
+        writer.close();
         printWriter.close();
     }
 
@@ -65,12 +74,15 @@ public class CounselingRoomAction extends ActionSupport implements ServletRespon
         counselingRoom.setPlace(place);
         counselingRoom.setTime(time);
         counselingRoomService.updateCounselingRoom(counselingRoom);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("updateCounselingRoom", "success");
+        Map map = new HashMap();
+        map.put("updateCounselingRoom", "success");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
-        printWriter.write(jsonObject.toString());
+        Writer writer = new StringWriter();
+        objectMapper.writeValue(writer, map);
+        printWriter.write(writer.toString());
+        writer.close();
         printWriter.close();
     }
 
@@ -82,13 +94,16 @@ public class CounselingRoomAction extends ActionSupport implements ServletRespon
         int totalPage = counselingRoomService.getPageCount(everyPage);
         Page page = PageUtils.createPage(everyPage, totalPage, requestPage);
         List<CounselingRoom> counselingRooms = counselingRoomService.getCounselingRoomByTime(time, page);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("pageCount",totalPage);
-        jsonObject.put("counselingRooms", counselingRooms);
+        Map map = new HashMap();
+        map.put("pageCount",totalPage);
+        map.put("counselingRooms", counselingRooms);
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
-        printWriter.write(jsonObject.toString());
+        Writer writer = new StringWriter();
+        objectMapper.writeValue(writer, map);
+        printWriter.write(writer.toString());
+        writer.close();
         printWriter.close();
     }
 
@@ -100,13 +115,16 @@ public class CounselingRoomAction extends ActionSupport implements ServletRespon
         int totalPage = counselingRoomService.getPageCount(everyPage);
         Page page = PageUtils.createPage(everyPage, totalPage, requestPage);
         List<CounselingRoom> counselingRooms = counselingRoomService.getCounselingRoomByPlace(place, page);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("pageCount",totalPage);
-        jsonObject.put("counselingRooms", counselingRooms);
+        Map map = new HashMap();
+        map.put("pageCount",totalPage);
+        map.put("counselingRooms", counselingRooms);
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
-        printWriter.write(jsonObject.toString());
+        Writer writer = new StringWriter();
+        objectMapper.writeValue(writer, map);
+        printWriter.write(writer.toString());
+        writer.close();
         printWriter.close();
     }
 

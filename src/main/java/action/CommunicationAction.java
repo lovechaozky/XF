@@ -2,6 +2,7 @@ package action;
 
 import DAO.querypage.Page;
 import DAO.querypage.PageUtils;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opensymphony.xwork2.ActionSupport;
 import domain.Communication;
 import org.apache.struts2.convention.annotation.Action;
@@ -18,6 +19,9 @@ import service.CommunicationService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,9 +36,11 @@ public class CommunicationAction extends ActionSupport implements ServletRespons
     HttpServletResponse response;
     Map session;
     CommunicationService communicationService;
+    ObjectMapper objectMapper;
 
     public CommunicationAction(){
         super();
+        objectMapper = new ObjectMapper();
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         communicationService = (CommunicationService) applicationContext.getBean("CommunicationService");
     }
@@ -49,12 +55,15 @@ public class CommunicationAction extends ActionSupport implements ServletRespons
         communication.setTime(time);
         communication.setPerson(person);
         communicationService.addCommunication(communication);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("addCommunication", "success");
+        Map map = new HashMap();
+        map.put("addCommunication", "success");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
-        printWriter.write(jsonObject.toString());
+        Writer writer = new StringWriter();
+        objectMapper.writeValue(writer, map);
+        printWriter.write(writer.toString());
+        writer.close();
         printWriter.close();
     }
 
@@ -66,12 +75,15 @@ public class CommunicationAction extends ActionSupport implements ServletRespons
         communication.setMessage(message);
         communication.setId(id);
         communicationService.updateCommunication(communication);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("updateCommunication", "success");
+        Map map = new HashMap();
+        map.put("updateCommunication", "success");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
-        printWriter.write(jsonObject.toString());
+        Writer writer = new StringWriter();
+        objectMapper.writeValue(writer, map);
+        printWriter.write(writer.toString());
+        writer.close();
         printWriter.close();
     }
 
@@ -79,12 +91,15 @@ public class CommunicationAction extends ActionSupport implements ServletRespons
     public void deleteCommunication()throws Exception{
         int id = Integer.parseInt(request.getParameter("id"));
         communicationService.deleteById(id);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("deleteCommunication", "success");
+        Map map = new HashMap();
+        map.put("deleteCommunication", "success");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
-        printWriter.write(jsonObject.toString());
+        Writer writer = new StringWriter();
+        objectMapper.writeValue(writer, map);
+        printWriter.write(writer.toString());
+        writer.close();
         printWriter.close();
     }
 
@@ -96,13 +111,16 @@ public class CommunicationAction extends ActionSupport implements ServletRespons
         int totalPage = communicationService.getPageCount(everyPage);
         Page page = PageUtils.createPage(everyPage, totalPage, requestPage);
         List<Communication> communications = communicationService.getCommunicationByTime(time, page);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("pageCount",totalPage);
-        jsonObject.put("communications", communications);
+        Map map = new HashMap();
+        map.put("pageCount",totalPage);
+        map.put("communications", communications);
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
-        printWriter.write(jsonObject.toString());
+        Writer writer = new StringWriter();
+        objectMapper.writeValue(writer, map);
+        printWriter.write(writer.toString());
+        writer.close();
         printWriter.close();
     }
 
@@ -114,13 +132,16 @@ public class CommunicationAction extends ActionSupport implements ServletRespons
         int totalPage = communicationService.getPageCount(everyPage);
         Page page = PageUtils.createPage(everyPage, totalPage, requestPage);
         List<Communication> communications = communicationService.getCommunicationByPerson(person, page);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("pageCount",totalPage);
-        jsonObject.put("communications", communications);
+        Map map = new HashMap();
+        map.put("pageCount",totalPage);
+        map.put("communications", communications);
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
-        printWriter.write(jsonObject.toString());
+        Writer writer = new StringWriter();
+        objectMapper.writeValue(writer, map);
+        printWriter.write(writer.toString());
+        writer.close();
         printWriter.close();
     }
 
@@ -131,13 +152,16 @@ public class CommunicationAction extends ActionSupport implements ServletRespons
         int totalPage = communicationService.getPageCount(everyPage);
         Page page = PageUtils.createPage(everyPage, totalPage, requestPage);
         List<Communication> communications = communicationService.getAllCommunication(page);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("pageCount",totalPage);
-        jsonObject.put("communications", communications);
+        Map map = new HashMap();
+        map.put("pageCount",totalPage);
+        map.put("communications", communications);
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
-        printWriter.write(jsonObject.toString());
+        Writer writer = new StringWriter();
+        objectMapper.writeValue(writer, map);
+        printWriter.write(writer.toString());
+        writer.close();
         printWriter.close();
     }
 

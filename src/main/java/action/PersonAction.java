@@ -1,5 +1,6 @@
 package action;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opensymphony.xwork2.ActionSupport;
 import domain.Person;
 import org.apache.struts2.convention.annotation.Action;
@@ -16,6 +17,9 @@ import service.PersonService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -29,9 +33,11 @@ public class PersonAction extends ActionSupport implements ServletRequestAware, 
     HttpServletResponse response;
     Map session;
     PersonService personService;
+    ObjectMapper objectMapper;
 
     public PersonAction(){
         super();
+        objectMapper = new ObjectMapper();
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         personService = (PersonService) applicationContext.getBean("PersonService");
     }
@@ -41,15 +47,18 @@ public class PersonAction extends ActionSupport implements ServletRequestAware, 
         String username = request.getParameter("username");
         Person person = personService.getPersonByUsername(username);
 //        System.out.println(person.toString());
-        JSONObject jsonObject = new JSONObject();
+        Map map = new HashMap();
         if(person == null)
-            jsonObject.put("isExist", "no");
+            map.put("isExist", "no");
         else
-            jsonObject.put("isExist", "yes");
+            map.put("isExist", "yes");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
-        printWriter.write(jsonObject.toString());
+        Writer writer = new StringWriter();
+        objectMapper.writeValue(writer, map);
+        printWriter.write(writer.toString());
+        writer.close();
         printWriter.close();
     }
 
@@ -70,12 +79,15 @@ public class PersonAction extends ActionSupport implements ServletRequestAware, 
         person.setUsername(username);
         personService.addPerson(person);
 //        System.out.println(person.toString());
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("register", "success");
+        Map map = new HashMap();
+        map.put("register", "success");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
-        printWriter.write(jsonObject.toString());
+        Writer writer = new StringWriter();
+        objectMapper.writeValue(writer, map);
+        printWriter.write(writer.toString());
+        writer.close();
         printWriter.close();
     }
 
@@ -84,20 +96,23 @@ public class PersonAction extends ActionSupport implements ServletRequestAware, 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         Person person = personService.getPersonByUsernameAndPassword(username, password);
-        JSONObject jsonObject = new JSONObject();
+        Map map = new HashMap();
         if (person == null){
-            jsonObject.put("loginState", "fail");
+            map.put("loginState", "fail");
 //            System.out.println("fail");
         }
         else{
-            jsonObject.put("loginState", "success");
+            map.put("loginState", "success");
 //            System.out.println(person.toString());
             session.put("person", person);
         }
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
-        printWriter.write(jsonObject.toString());
+        Writer writer = new StringWriter();
+        objectMapper.writeValue(writer, map);
+        printWriter.write(writer.toString());
+        writer.close();
         printWriter.close();
     }
 
@@ -116,12 +131,15 @@ public class PersonAction extends ActionSupport implements ServletRequestAware, 
         Person newPerson = personService.updatePerson(oldPerson);
 //        System.out.println(newPerson.toString());
         session.put("person", newPerson);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("updatePersonInfo", "success");
+        Map map = new HashMap();
+        map.put("updatePersonInfo", "success");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
-        printWriter.write(jsonObject.toString());
+        Writer writer = new StringWriter();
+        objectMapper.writeValue(writer, map);
+        printWriter.write(writer.toString());
+        writer.close();
         printWriter.close();
     }
 
@@ -131,13 +149,13 @@ public class PersonAction extends ActionSupport implements ServletRequestAware, 
         String password = request.getParameter("password");
         Person oldPerson = (Person) session.get("person");
 //        Person oldPerson = personService.getPersonById(1);
-        JSONObject jsonObject = new JSONObject();
+        Map map = new HashMap();
         if(personService.getPersonByUsernameAndPassword(oldPerson.getUsername(), oldPassword) == null){
-            jsonObject.put("updatePersonPassword", "fail");
+            map.put("updatePersonPassword", "fail");
 //            System.out.println("fail");
         }
         else{
-            jsonObject.put("updatePersonPassword", "success");
+            map.put("updatePersonPassword", "success");
             oldPerson.setPassword(password);
             Person newPerson = personService.updatePassword(oldPerson);
 //            System.out.println(newPerson.toString());
@@ -146,7 +164,10 @@ public class PersonAction extends ActionSupport implements ServletRequestAware, 
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
-        printWriter.write(jsonObject.toString());
+        Writer writer = new StringWriter();
+        objectMapper.writeValue(writer, map);
+        printWriter.write(writer.toString());
+        writer.close();
         printWriter.close();
     }
 
@@ -154,13 +175,13 @@ public class PersonAction extends ActionSupport implements ServletRequestAware, 
     public void getPersonByUsername()throws Exception{
         String username = request.getParameter("username");
         Person person = personService.getPersonByUsername(username);
-        JSONObject jsonObject = new JSONObject();
+        Map map = new HashMap();
         if(person == null){
-            jsonObject.put("briefPersonInfo", "fail");
+            map.put("briefPersonInfo", "fail");
 //            System.out.println("fail");
         }
         else{
-            jsonObject.put("briefPersonInfo", "success");
+            map.put("briefPersonInfo", "success");
             person.setPassword("");
 //            System.out.println(person.toString());
             session.put("briefPersonInfo", person);
@@ -168,7 +189,10 @@ public class PersonAction extends ActionSupport implements ServletRequestAware, 
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
-        printWriter.write(jsonObject.toString());
+        Writer writer = new StringWriter();
+        objectMapper.writeValue(writer, map);
+        printWriter.write(writer.toString());
+        writer.close();
         printWriter.close();
     }
 
@@ -176,13 +200,13 @@ public class PersonAction extends ActionSupport implements ServletRequestAware, 
     public void getPersonById()throws Exception{
         int id = Integer.parseInt(request.getParameter("id"));
         Person person = personService.getPersonById(id);
-        JSONObject jsonObject = new JSONObject();
+        Map map = new HashMap();
         if(person == null){
-            jsonObject.put("briefPersonInfo", "fail");
+            map.put("briefPersonInfo", "fail");
 //            System.out.println("fail");
         }
         else{
-            jsonObject.put("briefPersonInfo", "success");
+            map.put("briefPersonInfo", "success");
             person.setPassword("");
 //            System.out.println(person.toString());
             session.put("briefPersonInfo", person);
@@ -190,7 +214,10 @@ public class PersonAction extends ActionSupport implements ServletRequestAware, 
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
-        printWriter.write(jsonObject.toString());
+        Writer writer = new StringWriter();
+        objectMapper.writeValue(writer, map);
+        printWriter.write(writer.toString());
+        writer.close();
         printWriter.close();
     }
 

@@ -1,5 +1,6 @@
 package action;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opensymphony.xwork2.ActionSupport;
 import domain.Test;
 import org.apache.struts2.convention.annotation.Action;
@@ -28,9 +29,11 @@ public class TestAction extends ActionSupport implements ServletRequestAware, Se
     Map session;
     TestService testService;
     Test test;
+    ObjectMapper objectMapper;
 
     public TestAction(){
         super();
+        objectMapper = new ObjectMapper();
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         testService = (TestService) applicationContext.getBean("TestService");
     }
