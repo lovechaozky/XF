@@ -15,7 +15,7 @@
           p:driverClass="com.mysql.jdbc.Driver"
           p:jdbcUrl="jdbc:mysql://localhost:3306/xf?useUnicode=true&amp;characterEncoding=utf-8"
           p:user="root"
-          p:password="love19950812">
+          p:password="">
     </bean>
 
     <!--the configuration of sessionFactory-->
@@ -29,6 +29,10 @@
                 <value>domain.Person</value>
                 <value>domain.Material</value>
                 <value>domain.Activity</value>
+                <value>domain.Application</value>
+                <value>domain.Course</value>
+                <value>domain.CounselingRoom</value>
+                <value>domain.Communication</value>
             </list>
         </property>
         <property name="hibernateProperties">
